@@ -24,7 +24,7 @@ spec:
             registry:
               name: "ailab-gitlab-registry-preprod.ailabtools.org"
             kas:
-              name: "ailab-gitlab-registry-kas.ailabtools.org"
+              name: "ailab-gitlab-kas-preprod.ailabtools.org"
           ingress:
             class: "nginx"
         
