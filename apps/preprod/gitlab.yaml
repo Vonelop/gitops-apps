@@ -27,6 +27,9 @@ spec:
               name: "ailab-gitlab-registry-kas.ailabtools.org"
           ingress:
             class: "nginx"
+        
+        upgradeCheck:
+            enabled: false
 
         certmanager-issuer:
           email: "polenovsasa1@gmail.com"
