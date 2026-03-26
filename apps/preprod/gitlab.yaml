@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitlab-preprod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: http://charts.gitlab.io/
+    chart: gitlab
+    targetRevision: '9.9.1'
+    helm:
+      releaseName: gitlab-preprod
+      values: |
+        global:
+          hosts:
+            domain: "ailab-gitlab-preprod.ailabtools.org"
+            externalIP: "172.29.61.120"
+            gitlab:
+              name: "ailab-gitlab-preprod.ailabtools.org"
+            minio:
+              name: "ailab-gitlab-minio-preprod.ailabtools.org"
+            registry:
+              name: "ailab-gitlab-registry-preprod.ailabtools.org"
+            kas:
+              name: "ailab-gitlab-registry-kas.ailabtools.org"
+          ingress:
+            class: "nginx"
+
+        certmanager-issuer:
+          email: "polenovsasa1@gmail.com"
+
+        nginx-ingress:
+          enabled: false
+
+        gitlab:
+          toolbox:
+            persistence:
+              enabled: true
+              size: 500Gi
+              storageClass: "csi-disk-dss"
+          webservice:
+            nginx:
+              clientMaxBodySize: "512m"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitlab
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
