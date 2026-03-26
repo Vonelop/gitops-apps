@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: git@github.com:Vonelop/gitops-apps.git
+    repoURL: https://github.com/Vonelop/gitops-apps.git
     targetRevision: main
     path: apps
     directory:
