@@ -47,6 +47,9 @@ spec:
             nginx:
               clientMaxBodySize: "512m"
 
+        gitlab-runner:
+          install: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: gitlab
