@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: http://charts.gitlab.io/
     chart: gitlab
-    targetRevision: '9.9.1'
+    targetRevision: '*'
     helm:
       releaseName: gitlab-preprod
       values: |
