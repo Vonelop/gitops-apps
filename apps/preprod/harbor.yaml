@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harbor-preprod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://helm.goharbor.io
+    chart: harbor
+    targetRevision: '*'
+    helm:
+      releaseName: harbor-preprod
+      values: |
+        expose:
+          tls:
+            enabled: false
+          ingress:
+            hosts:
+              core: docker-registry-preprod.ailabtools.org
+            annotations:
+              nginx.ingress.kubernetes.io/x-forwarded-proto: "https"
+        
+        externalURL: https://docker-registry-preprod.ailabtools.org
+        
+        persistence:
+          enabled: false
+        
+        harborAdminPassword: "HLYyNm2DrAffygA9zSCXc2p"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: harbor-preprod
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
