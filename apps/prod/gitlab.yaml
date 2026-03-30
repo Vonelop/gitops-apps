@@ -1,0 +1,75 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitlab-prod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://charts.gitlab.io/
+    chart: gitlab
+    targetRevision: '9.9.1'
+    helm:
+      releaseName: gitlab-prod
+      values: |
+        global:
+          hosts:
+            domain: "gitlab.ailabtools.org"
+            https: true
+            externalIP: "172.29.61.100"
+            gitlab:
+              name: "gitlab.ailabtools.org"
+            minio:
+              name: "gitlab-minio.ailabtools.org"
+            registry:
+              name: "gitlab-registry.ailabtools.org"
+            kas:
+              name: "gitlab-kas.ailabtools.org"
+          ingress:
+            class: "nginx"
+          minio:
+            enabled: true
+        
+        upgradeCheck:
+            enabled: false
+
+        certmanager-issuer:
+          email: "polenovsasa1@gmail.com"
+
+        nginx-ingress:
+          enabled: false
+
+        prometheus:
+          install: false
+        
+        gitlab:
+          toolbox:
+            persistence:
+              enabled: true
+              size: 500Gi
+              storageClass: "csi-disk-dss"
+          webservice:
+            nginx:
+              clientMaxBodySize: "512m"
+          migrations:
+            enabled: false
+          gitlab-exporter:
+            enabled: false
+          kas:
+            enabled: false
+
+
+        gitlab-runner:
+          install: false
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitlab
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
