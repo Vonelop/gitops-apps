@@ -29,7 +29,7 @@ spec:
           ingress:
             class: "nginx"
           minio:
-            enabled: true
+            enabled: false
         
         upgradeCheck:
             enabled: false
