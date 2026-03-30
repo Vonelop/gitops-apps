@@ -28,6 +28,8 @@ spec:
               name: "ailab-gitlab-kas-preprod.ailabtools.org"
           ingress:
             class: "nginx"
+          minio:
+            enabled: true
         
         upgradeCheck:
             enabled: false
@@ -47,6 +49,12 @@ spec:
           webservice:
             nginx:
               clientMaxBodySize: "512m"
+          migrations:
+            enabled: false
+          gitlab-exporter:
+            enabled: false
+          kas:
+            enabled: false
 
         gitlab-runner:
           install: false
