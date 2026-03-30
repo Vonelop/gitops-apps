@@ -16,6 +16,7 @@ spec:
         global:
           hosts:
             domain: "ailab-gitlab-preprod.ailabtools.org"
+            https: true
             externalIP: "172.29.61.110"
             gitlab:
               name: "ailab-gitlab-preprod.ailabtools.org"
