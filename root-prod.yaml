@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Vonelop/gitops-apps.git
     targetRevision: main
-    path: apps
+    path: apps/prod
     directory:
       recurse: true
 

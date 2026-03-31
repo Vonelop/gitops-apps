@@ -24,11 +24,9 @@ spec:
               name: "gitlab-minio.ailabtools.org"
             registry:
               name: "gitlab-registry.ailabtools.org"
-            kas:
-              name: "gitlab-kas.ailabtools.org"
           ingress:
             class: "nginx"
-          minio:
+          kas:
             enabled: false
         
         upgradeCheck:
@@ -40,9 +38,6 @@ spec:
         nginx-ingress:
           enabled: false
 
-        prometheus:
-          install: false
-        
         gitlab:
           toolbox:
             persistence:
@@ -55,8 +50,6 @@ spec:
           migrations:
             enabled: false
           gitlab-exporter:
-            enabled: false
-          kas:
             enabled: false
 
         gitlab-runner:
