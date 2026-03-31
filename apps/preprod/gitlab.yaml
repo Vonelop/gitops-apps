@@ -24,10 +24,10 @@ spec:
               name: "ailab-gitlab-minio-preprod.ailabtools.org"
             registry:
               name: "ailab-gitlab-registry-preprod.ailabtools.org"
-            kas:
-              name: "ailab-gitlab-kas-preprod.ailabtools.org"
           ingress:
             class: "nginx"
+          kas:
+            enabled: false
         
         upgradeCheck:
             enabled: false
@@ -50,8 +50,6 @@ spec:
           migrations:
             enabled: false
           gitlab-exporter:
-            enabled: false
-          kas:
             enabled: false
 
         gitlab-runner:
