@@ -20,10 +20,10 @@ spec:
             externalIP: "172.29.61.100"
             gitlab:
               name: "gitlab.ailabtools.org"
-            minio:
-              name: "gitlab-minio.ailabtools.org"
-            registry:
-              name: "gitlab-registry.ailabtools.org"
+            # minio:
+            #   name: "gitlab-minio.ailabtools.org"
+            # registry:
+            #   name: "gitlab-registry.ailabtools.org"
           ingress:
             class: "nginx"
           kas:
