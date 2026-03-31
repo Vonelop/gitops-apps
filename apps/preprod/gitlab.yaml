@@ -28,8 +28,6 @@ spec:
               name: "ailab-gitlab-kas-preprod.ailabtools.org"
           ingress:
             class: "nginx"
-          minio:
-            enabled: false
         
         upgradeCheck:
             enabled: false
@@ -55,22 +53,6 @@ spec:
             enabled: false
           kas:
             enabled: false
-          artifacts:
-            objectStorage:
-              enabled: false
-          lfs:
-            objectStorage:
-              enabled: false
-          uploads:
-            objectStorage:
-              enabled: false
-          packages:
-            objectStorage:
-              enabled: false
-          toolbox:
-            backups:
-              objectStorage:
-                enabled: false
 
         gitlab-runner:
           install: false
