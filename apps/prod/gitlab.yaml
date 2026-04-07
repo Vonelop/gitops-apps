@@ -28,6 +28,41 @@ spec:
             class: "nginx"
           kas:
             enabled: false
+          minio:
+            enable: false
+          appConfig:
+            artifacts:
+              bucket: "ailab-gitlab-artifacts"
+            lfs:
+              bucket: "ailab-gitlab-lfs"
+            uploads:
+              bucket: "ailab-gitlab-uploads"
+            packages:
+              bucket: "ailab-gitlab-packages"
+            backups:
+              bucket: "ailab-gitlab-backups"
+              tmpBucket: "ailab-gitlab-tmp"
+            pages:
+              enabled: true
+              objectStore:
+                enabled: true
+                bucket: "ailab-gitlab-pages"
+            registry:
+              bucket: "ailab-gitlab-registry"
+            terraformState:
+              bucket: "ailab-gitlab-terraform-state"
+            externalDiffs:
+              bucket: "ailab-gitlab-external-diffs"
+            dependencyProxy:
+              bucket: "ailab-gitlab-dependency-proxy"
+            ciSecureFiles:
+              bucket: "ailab-gitlab-ci-secure-files"
+            object_store:
+              enabled: true
+              proxy_download: false
+              connection:
+                secret: gitlab-s3-creds
+                key: connection  
         
         upgradeCheck:
             enabled: false
