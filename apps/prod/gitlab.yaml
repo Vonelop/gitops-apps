@@ -83,6 +83,12 @@ spec:
               clientMaxBodySize: "512m"
           migrations:
             enabled: false
+          sidekiq:
+            init:
+              waitForMigrations: false
+          webservice:
+            init:
+              waitForMigrations: false
           gitlab-exporter:
             enabled: false
 
