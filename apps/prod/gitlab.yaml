@@ -61,8 +61,7 @@ spec:
               enabled: true
               proxy_download: false
               connection:
-                secret: gitlab-s3-creds
-                key: connection  
+                secret: gitlab-s3-creds 
         
         upgradeCheck:
             enabled: false
