@@ -29,7 +29,7 @@ spec:
           kas:
             enabled: false
           minio:
-            enable: false
+            enabled: false
           appConfig:
             artifacts:
               bucket: "ailab-gitlab-artifacts"
