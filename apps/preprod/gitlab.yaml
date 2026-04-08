@@ -24,6 +24,8 @@ spec:
             class: "nginx"
           kas:
             enabled: false
+          minio:
+            enabled: false
         
         upgradeCheck:
             enabled: false
