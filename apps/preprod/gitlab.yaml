@@ -20,10 +20,6 @@ spec:
             externalIP: "172.29.61.110"
             gitlab:
               name: "ailab-gitlab-preprod.ailabtools.org"
-            minio:
-              name: "ailab-gitlab-minio-preprod.ailabtools.org"
-            registry:
-              name: "ailab-gitlab-registry-preprod.ailabtools.org"
           ingress:
             class: "nginx"
           kas:
