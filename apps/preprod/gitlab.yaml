@@ -17,11 +17,15 @@ spec:
           hosts:
             domain: "ailab-gitlab-preprod.ailabtools.org"
             https: true
-            externalIP: "172.29.61.110"
+            # externalIP: "172.29.61.110"
             gitlab:
               name: "ailab-gitlab-preprod.ailabtools.org"
           ingress:
+            configureCertmanager: false
             class: "nginx"
+            tls:
+              enabled: true
+              secretName: wildcard-ailabtools-tls
           kas:
             enabled: false
           # minio:
@@ -62,9 +66,6 @@ spec:
         upgradeCheck:
             enabled: false
 
-        certmanager-issuer:
-          email: "polenovsasa1@gmail.com"
-
         nginx-ingress:
           enabled: false
 
@@ -86,6 +87,9 @@ spec:
           install: false
 
         prometheus:
+          install: false
+        
+        certmanager:
           install: false
 
   destination:
