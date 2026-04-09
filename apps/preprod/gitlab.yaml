@@ -22,7 +22,6 @@ spec:
               name: "ailab-gitlab-preprod.ailabtools.org"
           ingress:
             class: "nginx"
-            configureCertmanager: false
           kas:
             enabled: false
           # minio:
