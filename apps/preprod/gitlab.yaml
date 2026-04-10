@@ -24,7 +24,10 @@ spec:
             class: "nginx"
             tls:
               enabled: true
-              secretName: wildcard-ailabtools-tls
+              secretName: gitlab-ssl
+          railsSecrets:
+            secret: gitlab-backup
+            key: secrets.yml
           kas:
             enabled: false
           minio:
@@ -38,9 +41,9 @@ spec:
               bucket: "ailab-gitlab-uploads"
             packages:
               bucket: "ailab-gitlab-packages"
-            # backups:
-            #   bucket: "ailab-gitlab-backups"
-            #   tmpBucket: "ailab-gitlab-tmp"
+            backups:
+              bucket: "ailab-gitlab-backups"
+              tmpBucket: "ailab-gitlab-tmp"
             # pages:
             #   enabled: true
             #   objectStore:
@@ -60,7 +63,7 @@ spec:
               enabled: true
               proxy_download: false
               connection:
-                secret: gitlab-s3-creds 
+                secret: gitlab-s3
           
         upgradeCheck:
             enabled: false
@@ -74,11 +77,15 @@ spec:
               enabled: true
               size: 500Gi
               storageClass: "csi-disk-dss"
+            backups:
+              objectStorage:
+                config:
+                  secret: gitlab-s3cfg-backup
           webservice:
             nginx:
               clientMaxBodySize: "512m"
-          # migrations:
-          #   enabled: false
+          migrations:
+            enabled: false
           gitlab-exporter:
             enabled: false
 
