@@ -69,7 +69,7 @@ spec:
               bucket: "ailab-gitlab-registry"
               storage:
                 secret: gitlab-s3-registry
-                key: connection
+                key: config
             # terraformState:
             #   bucket: "ailab-gitlab-terraform-state"
             # externalDiffs:
