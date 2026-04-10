@@ -81,6 +81,11 @@ spec:
               objectStorage:
                 config:
                   secret: gitlab-s3cfg-backup
+          gitaly:
+            persistence:
+              enabled: true
+              size: 250Gi
+              storageClass: "csi-disk-dss"
           webservice:
             nginx:
               clientMaxBodySize: "512m"
