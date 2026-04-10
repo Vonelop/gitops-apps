@@ -84,8 +84,8 @@ spec:
           webservice:
             nginx:
               clientMaxBodySize: "512m"
-          migrations:
-            enabled: false
+          # migrations:
+          #   enabled: false
           gitlab-exporter:
             enabled: false
 
