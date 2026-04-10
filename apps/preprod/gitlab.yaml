@@ -68,14 +68,14 @@ spec:
               enabled: true
               bucket: "ailab-gitlab-registry"
               storage:
-    s3:
-      accesskey: "XBGN2J0FDWD52ODSO3NK"
-      secretkey: "I3JCDCiAq0dpoo12sapyGlkPjRI0dIps1ju4Io61"
-      region: "ru-moscow-1"
-      regionendpoint: "https://obs.ru-moscow-1.hc.sbercloud.ru"
-      bucket: "ailab-gitlab-registry"
-      secure: true
-      v4auth: true
+              s3:
+                accesskey: "XBGN2J0FDWD52ODSO3NK"
+                secretkey: "I3JCDCiAq0dpoo12sapyGlkPjRI0dIps1ju4Io61"
+                region: "ru-moscow-1"
+                regionendpoint: "https://obs.ru-moscow-1.hc.sbercloud.ru"
+                bucket: "ailab-gitlab-registry"
+                secure: true
+                v4auth: true
             # terraformState:
             #   bucket: "ailab-gitlab-terraform-state"
             # externalDiffs:
