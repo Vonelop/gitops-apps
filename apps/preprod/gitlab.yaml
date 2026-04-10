@@ -35,15 +35,30 @@ spec:
           appConfig:
             artifacts:
               bucket: "ailab-gitlab-artifacts"
+              connection:
+                secret: gitlab-s3
+                key: connection
             lfs:
               bucket: "ailab-gitlab-lfs"
+              connection:
+                secret: gitlab-s3
+                key: connection
             uploads:
               bucket: "ailab-gitlab-uploads"
+              connection:
+                secret: gitlab-s3
+                key: connection
             packages:
               bucket: "ailab-gitlab-packages"
+              connection:
+                secret: gitlab-s3
+                key: connection
             backups:
               bucket: "ailab-gitlab-backups"
               tmpBucket: "ailab-gitlab-tmp"
+              connection:
+                secret: gitlab-s3
+                key: connection
             # pages:
             #   enabled: true
             #   objectStore:
@@ -51,6 +66,9 @@ spec:
             #     bucket: "ailab-gitlab-pages"
             registry:
               bucket: "ailab-gitlab-registry"
+              connection:
+                secret: gitlab-s3
+                key: connection
             # terraformState:
             #   bucket: "ailab-gitlab-terraform-state"
             # externalDiffs:
@@ -62,8 +80,6 @@ spec:
             object_store:
               enabled: true
               proxy_download: false
-              connection:
-                secret: gitlab-s3
           
         upgradeCheck:
             enabled: false
