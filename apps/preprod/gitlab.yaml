@@ -65,8 +65,9 @@ spec:
             #     enabled: true
             #     bucket: "ailab-gitlab-pages"
             registry:
+              enabled: true
               bucket: "ailab-gitlab-registry"
-              connection:
+              storage:
                 secret: gitlab-s3
                 key: connection
             # terraformState:
@@ -79,7 +80,7 @@ spec:
             #   bucket: "ailab-gitlab-ci-secure-files"
             # object_store:
             #   enabled: true
-              # proxy_download: false
+            #   proxy_download: false
           
         upgradeCheck:
             enabled: false
