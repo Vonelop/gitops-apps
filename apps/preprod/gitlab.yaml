@@ -77,9 +77,9 @@ spec:
             #   bucket: "ailab-gitlab-dependency-proxy"
             # ciSecureFiles:
             #   bucket: "ailab-gitlab-ci-secure-files"
-            object_store:
-              enabled: true
-              proxy_download: false
+            # object_store:
+            #   enabled: true
+              # proxy_download: false
           
         upgradeCheck:
             enabled: false
