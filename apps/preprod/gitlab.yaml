@@ -68,7 +68,7 @@ spec:
               enabled: true
               bucket: "ailab-gitlab-registry"
               storage:
-                secret: gitlab-s3
+                secret: gitlab-s3-registry
                 key: connection
             # terraformState:
             #   bucket: "ailab-gitlab-terraform-state"
