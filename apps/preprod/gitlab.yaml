@@ -48,6 +48,7 @@ spec:
               connection:
                 secret: gitlab-s3
                 key: connection
+              proxy_download: false
             packages:
               bucket: "ailab-gitlab-packages"
               connection:
