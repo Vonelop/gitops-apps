@@ -67,8 +67,8 @@ spec:
             registry:
               enabled: true
               storage:
-                s3:
-                  secret: gitlab-registry-s3
+                secret: gitlab-s3-registry
+                key: config
             # terraformState:
             #   bucket: "ailab-gitlab-terraform-state"
             # externalDiffs:
