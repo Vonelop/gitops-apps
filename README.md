@@ -46,10 +46,12 @@ s3:
   secure: true
   v4auth: true
 
-gitlab-registry-storage
+- Создай секрет
+kubectl create secret generic gitlab-registry-storage \
+    --from-file=config=registry-storage.yaml -n gitlab
 
 6. Поднять приложение AgroCd
-kubectl apply -g root-prod.yaml
+kubectl apply -f root-prod.yaml
 
 7. Восстоновить бэкап внутри пода toolbox
 backup-utility --restore -t 1775512833_2026_04_06_18.9.0-ee
