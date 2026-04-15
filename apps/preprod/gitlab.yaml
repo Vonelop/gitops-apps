@@ -43,6 +43,8 @@ spec:
             backups:
               bucket: ailab-gitlab-backups
               tmpBucket: ailab-gitlab-tmp
+            registry:
+              bucket: ailab-gitlab-registry
             object_store:
               connection:
                 secret: gitlab-object-storage
@@ -68,13 +70,18 @@ spec:
           gitaly:
             persistence:
               enabled: true
-              size: 250Gi
+              size: 256Gi
               storageClass: "csi-disk-dss"
           webservice:
             nginx:
               clientMaxBodySize: "512m"
           gitlab-exporter:
             enabled: false
+
+        registry:
+          storage:
+            secret: gitlab-registry-storage
+            key: config
 
         gitlab-runner:
           install: false

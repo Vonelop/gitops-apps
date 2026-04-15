@@ -15,7 +15,7 @@ path_style: false
 kubectl create secret generic -n gitlab gitlab-object-storage --from-file=connection=object_storage.yaml
 
 
-2. Создай секрет для подключения работы ssl
+2. Создай секрет для подключения tsl
 - Скачай с рег.ру ключ и сертификат (certificate.crt, certificate.key)
 
 - Создай секрет
@@ -30,13 +30,26 @@ kubectl create secret generic gitlab-backup --from-file=secrets.yml=gitlab-secre
 
 
 4. Создай секрет для подключения сервисов к s3 (s3cfg)
-- Сохрони конфигурацию для доступа к s3
+- Сохрони конфигурацию для доступа к s3 (s3cfg)
 
 - Создай секрет
 kubectl create secret generic gitlab-s3cfg-backup --from-file=config=.s3cfg -n gitlab
 
-Поднять приложение AgroCd
+5. Создать секрет для Docker Registry images
+- Создай файл registry-storage.yaml
+s3:
+  region: ru-moscow-1
+  bucket: ailab-gitlab-registry
+  accesskey: 
+  secretkey: 
+  regionendpoint: https://obs.ru-moscow-1.hc.sbercloud.ru
+  secure: true
+  v4auth: true
+
+gitlab-registry-storage
+
+6. Поднять приложение AgroCd
 kubectl apply -g root-prod.yaml
 
-Восстоновить бэкап внутри пода toolbox
+7. Восстоновить бэкап внутри пода toolbox
 backup-utility --restore -t 1775512833_2026_04_06_18.9.0-ee
