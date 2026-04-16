@@ -9,65 +9,50 @@ spec:
   source:
     repoURL: https://charts.gitlab.io/
     chart: gitlab
-    targetRevision: '9.9.1'
+    targetRevision: '9.9.0'
     helm:
       releaseName: gitlab-prod
       values: |
         global:
           hosts:
-            domain: "gitlab.ailabtools.org"
+            domain: gitlab.ailabtools.org
             https: true
-            externalIP: "172.29.61.100"
             gitlab:
-              name: "gitlab.ailabtools.org"
-            # minio:
-            #   name: "gitlab-minio.ailabtools.org"
-            # registry:
-            #   name: "gitlab-registry.ailabtools.org"
+              name: gitlab.ailabtools.org
           ingress:
             class: "nginx"
+            configureCertmanager: false
+            tls:
+              enabled: true
+              secretName: gitlab-tls
+          railsSecrets:
+            secret: gitlab-backup  
           kas:
-            enabled: false
+            enabled: false  
           minio:
             enabled: false
           appConfig:
             artifacts:
-              bucket: "ailab-gitlab-artifacts"
+              bucket: ailab-gitlab-artifacts
             lfs:
-              bucket: "ailab-gitlab-lfs"
+              bucket: ailab-gitlab-lfs
             uploads:
-              bucket: "ailab-gitlab-uploads"
+              bucket: ailab-gitlab-uploads
             packages:
-              bucket: "ailab-gitlab-packages"
+              bucket: ailab-gitlab-packages
             backups:
-              bucket: "ailab-gitlab-backups"
-              tmpBucket: "ailab-gitlab-tmp"
-            pages:
-              enabled: true
-              objectStore:
-                enabled: true
-                bucket: "ailab-gitlab-pages"
+              bucket: ailab-gitlab-backups
+              tmpBucket: ailab-gitlab-tmp
             registry:
-              bucket: "ailab-gitlab-registry"
-            terraformState:
-              bucket: "ailab-gitlab-terraform-state"
-            externalDiffs:
-              bucket: "ailab-gitlab-external-diffs"
-            dependencyProxy:
-              bucket: "ailab-gitlab-dependency-proxy"
-            ciSecureFiles:
-              bucket: "ailab-gitlab-ci-secure-files"
+              bucket: ailab-gitlab-registry
             object_store:
+              connection:
+                secret: gitlab-object-storage
               enabled: true
               proxy_download: false
-              connection:
-                secret: gitlab-s3-creds 
-        
+          
         upgradeCheck:
             enabled: false
-
-        certmanager-issuer:
-          email: "polenovsasa1@gmail.com"
 
         nginx-ingress:
           enabled: false
@@ -78,19 +63,25 @@ spec:
               enabled: true
               size: 500Gi
               storageClass: "csi-disk-dss"
+            backups:
+              objectStorage:
+                config:
+                  secret: gitlab-s3cfg-backup
+          gitaly:
+            persistence:
+              enabled: true
+              size: 256Gi
+              storageClass: "csi-disk-dss"
           webservice:
             nginx:
               clientMaxBodySize: "512m"
-          # migrations:
-          #   enabled: false
-          sidekiq:
-            init:
-              waitForMigrations: false
-          webservice:
-            init:
-              waitForMigrations: false
           gitlab-exporter:
             enabled: false
+
+        registry:
+          storage:
+            secret: gitlab-registry-storage
+            key: config
 
         gitlab-runner:
           install: false

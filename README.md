@@ -1,8 +1,6 @@
-# gitops-apps
-
 ## GitLab ArgoCD
 
-1. Создать ns gitlab 
+1. Создай ns gitlab 
 
 2. Создай секрет для статических типов данных при помощи команды
 - Создай файл object_storage.yaml
