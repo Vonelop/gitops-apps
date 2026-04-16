@@ -2,7 +2,9 @@
 
 ## GitLab ArgoCD
 
-1. Создай секрет для статических типов данных при помощи команды
+1. Создать ns gitlab 
+
+2. Создай секрет для статических типов данных при помощи команды
 - Создай файл object_storage.yaml
 provider: AWS
 region: ru-moscow-1
@@ -19,7 +21,7 @@ kubectl create secret generic -n gitlab gitlab-object-storage --from-file=connec
 - Скачай с рег.ру ключ и сертификат (certificate.crt, certificate.key)
 
 - Создай секрет
-kubectl create secret tls gitlab-tls --cert=certificate.crt --key=certificate.key -n gitlab
+    kubectl create secret tls gitlab-tls --cert=certificate.crt --key=certificate.key -n gitlab
 
 
 3. Создай секрет для востоновления бэкапа
@@ -35,14 +37,15 @@ kubectl create secret generic gitlab-backup --from-file=secrets.yml=gitlab-secre
 - Создай секрет
 kubectl create secret generic gitlab-s3cfg-backup --from-file=config=.s3cfg -n gitlab
 
-5. Создать секрет для Docker Registry images
+5. Создай секрет для Docker Registry images
 - Создай файл registry-storage.yaml
-s3:
+s3_v2:
   region: ru-moscow-1
   bucket: ailab-gitlab-registry
   accesskey: 
   secretkey: 
   regionendpoint: https://obs.ru-moscow-1.hc.sbercloud.ru
+  pathstyle: false
   secure: true
   v4auth: true
 
@@ -54,4 +57,6 @@ kubectl create secret generic gitlab-registry-storage \
 kubectl apply -f root-prod.yaml
 
 7. Восстоновить бэкап внутри пода toolbox
-backup-utility --restore -t 1775512833_2026_04_06_18.9.0-ee
+
+
+backup-utility --restore -t backup_id
